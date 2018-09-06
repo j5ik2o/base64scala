@@ -1,7 +1,6 @@
 package com.github.j5ik2o.base64scala
 
-import java.nio.charset.{Charset, StandardCharsets}
-
+import java.nio.charset.{ Charset, StandardCharsets }
 
 trait Base64String {
 
@@ -24,7 +23,7 @@ object Base64String {
     new Default(base64Value, urlSafe, charset)
 
   private[base64scala] class Default(base64Value: String, urlSafe: Boolean, charset: Charset)
-    extends AbstractBase64String(base64Value, urlSafe, charset) {
+      extends AbstractBase64String(base64Value, urlSafe, charset) {
 
     override def toString: String = s"Base64String($base64Value)"
 
@@ -34,15 +33,9 @@ object Base64String {
 
     override def equals(obj: scala.Any): Boolean = obj match {
       case that: Default => that.canEqual(this) && asString == that.asString
-      case _ => false
+      case _             => false
     }
 
   }
 
 }
-
-
-
-
-
-

@@ -66,18 +66,11 @@ lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
     name := "base64scala",
     libraryDependencies ++= Seq(
-      "org.scalatest"     %% "scalatest"         % "3.0.5" % Test,
-      "org.typelevel"     %% "cats-core"         % "1.1.0",
-      "commons-codec"     % "commons-codec"      % "1.11",
-      "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test,
-      "com.typesafe.akka" %% "akka-http"         % akkaHttpVersion,
-      "com.typesafe.akka" %% "akka-actor"        % akkaVersion,
-      "com.typesafe.akka" %% "akka-stream"       % akkaVersion,
-      "com.typesafe.akka" %% "akka-slf4j"        % akkaVersion,
-      "io.monix"          %% "monix"             % "3.0.0-RC1",
-      "com.beachape"      %% "enumeratum"        % "1.5.13",
-      "org.slf4j"         % "slf4j-api"          % "1.7.25",
-      "ch.qos.logback"    % "logback-classic"    % "1.2.3" % Test
+      "org.scalatest"  %% "scalatest"      % "3.0.5" % Test,
+      "org.typelevel"  %% "cats-core"      % "1.1.0",
+      "com.beachape"   %% "enumeratum"     % "1.5.13",
+      "org.slf4j"      % "slf4j-api"       % "1.7.25",
+      "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
     ) ++ Seq(
       "io.circe" %% "circe-core",
       "io.circe" %% "circe-generic",

@@ -1,6 +1,6 @@
 package com.github.j5ik2o.base64scala
 
-import java.nio.charset.{Charset, StandardCharsets}
+import java.nio.charset.{ Charset, StandardCharsets }
 import java.util.Base64.Encoder
 
 abstract class AbstractBase64StringFactory(urlSafe: Boolean, isNoPadding: Boolean) extends Base64StringFactory {

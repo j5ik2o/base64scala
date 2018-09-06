@@ -16,11 +16,13 @@ trait Base64StringFactory {
 
 object Base64StringFactory {
 
-  def apply(urlSafe: Boolean = false, isNoPadding: Boolean = false): Base64StringFactory = new Default(urlSafe, isNoPadding)
+  def apply(urlSafe: Boolean = false, isNoPadding: Boolean = false): Base64StringFactory =
+    new Default(urlSafe, isNoPadding)
 
-  private[base64scala] class Default(urlSafe: Boolean, isNoPadding: Boolean) extends AbstractBase64StringFactory(urlSafe, isNoPadding) {
-    override protected def createInstance(value: String): Base64String = new Base64String.Default(value, urlSafe, charset)
+  private[base64scala] class Default(urlSafe: Boolean, isNoPadding: Boolean)
+      extends AbstractBase64StringFactory(urlSafe, isNoPadding) {
+    override protected def createInstance(value: String): Base64String =
+      new Base64String.Default(value, urlSafe, charset)
   }
 
 }
-
