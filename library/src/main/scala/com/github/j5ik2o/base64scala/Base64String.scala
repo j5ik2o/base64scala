@@ -7,6 +7,7 @@ trait Base64String {
   def length: Int
   def asString: String
   def rawBytes: Array[Byte]
+  def urlSafe: Boolean
   def charset: Charset
 
   def decode: Either[Base64DecodeError, Array[Byte]]
