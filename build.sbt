@@ -30,7 +30,7 @@ val coreSettings = Seq(
     false
   },
   pomExtra := {
-    <url>https://github.com/j5ik2o/pay-jp-scala</url>
+    <url>https://github.com/j5ik2o/base64scala</url>
       <licenses>
         <license>
           <name>The MIT License</name>
@@ -38,9 +38,9 @@ val coreSettings = Seq(
         </license>
       </licenses>
       <scm>
-        <url>git@github.com:j5ik2o/pay-jp-scala.git</url>
-        <connection>scm:git:github.com/j5ik2o/pay-jp-scala</connection>
-        <developerConnection>scm:git:git@github.com:j5ik2o/pay-jp-scala.git</developerConnection>
+        <url>git@github.com:j5ik2o/base64scala.git</url>
+        <connection>scm:git:github.com/j5ik2o/base64scala</connection>
+        <developerConnection>scm:git:git@github.com:j5ik2o/base64scala.git</developerConnection>
       </scm>
       <developers>
         <developer>
