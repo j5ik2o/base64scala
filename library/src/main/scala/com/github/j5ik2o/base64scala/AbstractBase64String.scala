@@ -2,6 +2,7 @@ package com.github.j5ik2o.base64scala
 
 import java.nio.charset.Charset
 import java.util.Base64.Decoder
+import cats.implicits._
 
 abstract class AbstractBase64String(val base64Value: String, val urlSafe: Boolean, val charset: Charset)
     extends Base64String {

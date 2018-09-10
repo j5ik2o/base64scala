@@ -2,6 +2,7 @@ val coreSettings = Seq(
   sonatypeProfileName := "com.github.j5ik2o",
   organization := "com.github.j5ik2o",
   scalaVersion := "2.12.6",
+  crossScalaVersions := Seq("2.11.11", "2.12.6"),
   scalacOptions ++= {
     Seq(
       "-feature",
