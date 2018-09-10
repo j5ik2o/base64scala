@@ -19,3 +19,18 @@ resolvers += "Sonatype OSS Snapshot Repository" at "https://oss.sonatype.org/con
 
 libraryDependencies += "com.github.j5ik2o" %% "base64scala" % "1.0.2-SNAPSHOT"
 ```
+
+## Usage
+
+- Encode
+
+```scala
+val string = "ABC"
+val base64Value: Base64String = Base64StringFactory().encode(string)
+```
+
+- Decode
+
+```scala
+val original = base64Value.decode // ABC
+```
