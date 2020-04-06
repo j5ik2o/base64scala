@@ -1,6 +1,6 @@
 # base64scala
 
-[![CircleCI](https://circleci.com/gh/j5ik2o/base64scala/tree/master.svg?style=shield&circle-token=xxx)](https://circleci.com/gh/j5ik2o/base64scala/tree/master)
+[![CircleCI](https://circleci.com/gh/j5ik2o/base64scala/tree/master.svg?style=shield&circle-token=ca1b41daa5f79861aef9b3219a0c00ec5dd6fe45)](https://circleci.com/gh/j5ik2o/base64scala/tree/master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.j5ik2o/base64scala_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.j5ik2o/base64scala_2.13)
 [![Scaladoc](http://javadoc-badge.appspot.com/com.github.j5ik2o/base64scala_2.13.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.github.j5ik2o/base64scala_2.13/com/github/j5ik2o/base64scala/index.html?javadocio=true)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
