@@ -1,35 +1,24 @@
+val scala211Version = "2.11.12"
+val scala212Version = "2.12.11"
+val scala213Version = "2.13.1"
+
 val coreSettings = Seq(
   sonatypeProfileName := "com.github.j5ik2o",
   organization := "com.github.j5ik2o",
-  scalaVersion := "2.12.6",
-  crossScalaVersions := Seq("2.11.11", "2.12.6"),
-  scalacOptions ++= {
-    Seq(
+  scalaVersion := scala213Version,
+  crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version),
+  scalacOptions ++= Seq(
       "-feature",
       "-deprecation",
       "-unchecked",
       "-encoding",
       "UTF-8",
-      "-language:existentials",
-      "-language:implicitConversions",
-      "-language:postfixOps",
-      "-language:higherKinds"
-    ) ++ {
-      CrossVersion.partialVersion(scalaVersion.value) match {
-        case Some((2L, scalaMajor)) if scalaMajor == 12 =>
-          Seq.empty
-        case Some((2L, scalaMajor)) if scalaMajor <= 11 =>
-          Seq(
-            "-Yinline-warnings"
-          )
-      }
-    }
-  },
+      "-language:_",
+      "-target:jvm-1.8"
+    ),
   publishMavenStyle := true,
   publishArtifact in Test := false,
-  pomIncludeRepository := { _ =>
-    false
-  },
+  pomIncludeRepository := { _ => false },
   pomExtra := {
     <url>https://github.com/j5ik2o/base64scala</url>
       <licenses>
@@ -50,42 +39,31 @@ val coreSettings = Seq(
         </developer>
       </developers>
   },
-  publishTo in ThisBuild := sonatypePublishTo.value,
+  publishTo := sonatypePublishToBundle.value,
   credentials := {
     val ivyCredentials = (baseDirectory in LocalRootProject).value / ".credentials"
-    Credentials(ivyCredentials) :: Nil
+    val gpgCredentials = (baseDirectory in LocalRootProject).value / ".gpgCredentials"
+    Credentials(ivyCredentials) :: Credentials(gpgCredentials) :: Nil
   },
-  scalafmtOnCompile in ThisBuild := true,
-  scalafmtTestOnCompile in ThisBuild := true
+  scalafmtOnCompile in ThisBuild := true
 )
 
-val circeVersion    = "0.10.0-M1"
-val akkaHttpVersion = "10.1.1"
-val akkaVersion     = "2.5.11"
+val circeVersion    = "0.13.0"
+val akkaHttpVersion = "10.1.11"
+val akkaVersion     = "2.6.4"
 
 lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
     name := "base64scala",
-    libraryDependencies ++= Seq(
-      "org.scalatest"  %% "scalatest"      % "3.0.5" % Test,
-      "org.typelevel"  %% "cats-core"      % "1.1.0",
-      "com.beachape"   %% "enumeratum"     % "1.5.13",
-      "org.slf4j"      % "slf4j-api"       % "1.7.25",
-      "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
-    ) ++ Seq(
-      "io.circe" %% "circe-core",
-      "io.circe" %% "circe-generic",
-      "io.circe" %% "circe-generic-extras",
-      "io.circe" %% "circe-parser"
-    ).map(_ % circeVersion)
+    libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.1.1" % Test)
   )
 )
 
 lazy val example = (project in file("example")).settings(
-  coreSettings ++ Seq(
-    name := "base64scala-example"
-  )
-) dependsOn library
+    coreSettings ++ Seq(
+      name := "base64scala-example"
+    )
+  ) dependsOn library
 
 lazy val `root` = (project in file("."))
   .settings(coreSettings)
