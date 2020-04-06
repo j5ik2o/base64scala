@@ -48,10 +48,6 @@ val coreSettings = Seq(
   scalafmtOnCompile in ThisBuild := true
 )
 
-val circeVersion    = "0.13.0"
-val akkaHttpVersion = "10.1.11"
-val akkaVersion     = "2.6.4"
-
 lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
     name := "base64scala",
