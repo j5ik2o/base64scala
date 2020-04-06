@@ -2,7 +2,6 @@ package com.github.j5ik2o.base64scala
 
 import java.nio.charset.Charset
 import java.util.Base64.Decoder
-import cats.implicits._
 
 abstract class AbstractBase64String(val base64Value: String, val urlSafe: Boolean, val charset: Charset)
     extends Base64String {
@@ -29,9 +28,9 @@ abstract class AbstractBase64String(val base64Value: String, val urlSafe: Boolea
     }
   }
 
-  override lazy val decodeToBigInt: Either[Base64DecodeError, BigInt] = decode.map(BigInt(1, _))
+  override lazy val decodeToBigInt: Either[Base64DecodeError, BigInt] = decode.right.map(BigInt(1, _))
 
   override lazy val decodeToString: Either[Base64DecodeError, String] =
-    decode.map(new String(_, charset))
+    decode.right.map(new String(_, charset))
 
 }
