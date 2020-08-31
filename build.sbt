@@ -51,7 +51,7 @@ val coreSettings = Seq(
 lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
     name := "base64scala",
-    libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.1.1" % Test)
+    libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.1.4" % Test)
   )
 )
 
