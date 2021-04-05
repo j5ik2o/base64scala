@@ -8,14 +8,14 @@ val coreSettings = Seq(
   scalaVersion := scala213Version,
   crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version),
   scalacOptions ++= Seq(
-      "-feature",
-      "-deprecation",
-      "-unchecked",
-      "-encoding",
-      "UTF-8",
-      "-language:_",
-      "-target:jvm-1.8"
-    ),
+    "-feature",
+    "-deprecation",
+    "-unchecked",
+    "-encoding",
+    "UTF-8",
+    "-language:_",
+    "-target:jvm-1.8"
+  ),
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
@@ -56,10 +56,10 @@ lazy val library = (project in file("library")).settings(
 )
 
 lazy val example = (project in file("example")).settings(
-    coreSettings ++ Seq(
-      name := "base64scala-example"
-    )
-  ) dependsOn library
+  coreSettings ++ Seq(
+    name := "base64scala-example"
+  )
+) dependsOn library
 
 lazy val `root` = (project in file("."))
   .settings(coreSettings)
