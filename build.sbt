@@ -1,10 +1,18 @@
-val scala211Version = "2.11.12"
-val scala212Version = "2.12.13"
-val scala213Version = "2.13.1"
+import Dependencies._
+import Dependencies.Versions._
 
 val coreSettings = Seq(
-  sonatypeProfileName := "com.github.j5ik2o",
   organization := "com.github.j5ik2o",
+  homepage := Some(url("https://github.com/j5ik2o/base64scala")),
+  licenses := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
+  developers := List(
+      Developer(
+        id = "j5ik2o",
+        name = "Junichi Kato",
+        email = "j5ik2o@gmail.com",
+        url = url("https://blog.j5ik2o.me")
+      )
+    ),
   scalaVersion := scala213Version,
   crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version),
   scalacOptions ++= Seq(
@@ -16,42 +24,16 @@ val coreSettings = Seq(
       "-language:_",
       "-target:jvm-1.8"
     ),
-  publishMavenStyle := true,
-  publishArtifact in Test := false,
-  pomIncludeRepository := { _ => false },
-  pomExtra := {
-    <url>https://github.com/j5ik2o/base64scala</url>
-      <licenses>
-        <license>
-          <name>The MIT License</name>
-          <url>http://opensource.org/licenses/MIT</url>
-        </license>
-      </licenses>
-      <scm>
-        <url>git@github.com:j5ik2o/base64scala.git</url>
-        <connection>scm:git:github.com/j5ik2o/base64scala</connection>
-        <developerConnection>scm:git:git@github.com:j5ik2o/base64scala.git</developerConnection>
-      </scm>
-      <developers>
-        <developer>
-          <id>j5ik2o</id>
-          <name>Junichi Kato</name>
-        </developer>
-      </developers>
-  },
-  publishTo := sonatypePublishToBundle.value,
-  credentials := {
-    val ivyCredentials = (baseDirectory in LocalRootProject).value / ".credentials"
-    val gpgCredentials = (baseDirectory in LocalRootProject).value / ".gpgCredentials"
-    Credentials(ivyCredentials) :: Credentials(gpgCredentials) :: Nil
-  },
-  scalafmtOnCompile in ThisBuild := true
+  Test / publishArtifact := false,
+  Test / fork := true,
+  Test / parallelExecution := false,
+  ThisBuild / scalafmtOnCompile := true
 )
 
 lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
     name := "base64scala",
-    libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.1.1" % Test)
+    libraryDependencies += scalatest.scalatest % Test
   )
 )
 
@@ -64,6 +46,6 @@ lazy val example = (project in file("example")).settings(
 lazy val `root` = (project in file("."))
   .settings(coreSettings)
   .settings(
-    name := "base64scala-project"
+    name := "base64scala-root"
   )
   .aggregate(library, example)
