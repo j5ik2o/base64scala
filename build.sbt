@@ -6,26 +6,26 @@ val coreSettings = Seq(
   homepage := Some(url("https://github.com/j5ik2o/base64scala")),
   licenses := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
   developers := List(
-      Developer(
-        id = "j5ik2o",
-        name = "Junichi Kato",
-        email = "j5ik2o@gmail.com",
-        url = url("https://blog.j5ik2o.me")
-      )
-    ),
+    Developer(
+      id = "j5ik2o",
+      name = "Junichi Kato",
+      email = "j5ik2o@gmail.com",
+      url = url("https://blog.j5ik2o.me")
+    )
+  ),
   scalaVersion := scala213Version,
   crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version),
   scalacOptions ++= Seq(
-      "-feature",
-      "-deprecation",
-      "-unchecked",
-      "-encoding",
-      "UTF-8",
-      "-language:_",
-      "-target:jvm-1.8",
-      "-Yrangepos",
-      "-Ywarn-unused"
-    ),
+    "-feature",
+    "-deprecation",
+    "-unchecked",
+    "-encoding",
+    "UTF-8",
+    "-language:_",
+    "-target:jvm-1.8",
+    "-Yrangepos",
+    "-Ywarn-unused"
+  ),
   ThisBuild / scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
   semanticdbEnabled := true,
   semanticdbVersion := scalafixSemanticdb.revision,
@@ -41,10 +41,10 @@ lazy val library = (project in file("library")).settings(
 )
 
 lazy val example = (project in file("example")).settings(
-    coreSettings ++ Seq(
-      name := "base64scala-example"
-    )
-  ) dependsOn library
+  coreSettings ++ Seq(
+    name := "base64scala-example"
+  )
+) dependsOn library
 
 lazy val `root` = (project in file("."))
   .settings(coreSettings)
