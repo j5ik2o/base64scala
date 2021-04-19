@@ -22,8 +22,13 @@ val coreSettings = Seq(
       "-encoding",
       "UTF-8",
       "-language:_",
-      "-target:jvm-1.8"
+      "-target:jvm-1.8",
+      "-Yrangepos",
+      "-Ywarn-unused"
     ),
+  ThisBuild / scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
+  semanticdbEnabled := true,
+  semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
   Test / fork := true,
   Test / parallelExecution := false,
@@ -49,3 +54,7 @@ lazy val `root` = (project in file("."))
     name := "base64scala-root"
   )
   .aggregate(library, example)
+
+// --- Custom commands
+addCommandAlias("lint", ";scalafmtCheck;test:scalafmtCheck;scalafmtSbtCheck;scalafixAll --check")
+addCommandAlias("fmt", ";scalafmtAll;scalafmtSbt")
