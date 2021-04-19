@@ -32,10 +32,11 @@ object Base64String {
 
     def canEqual(other: Any): Boolean = other.isInstanceOf[Default]
 
-    override def equals(obj: scala.Any): Boolean = obj match {
-      case that: Default => that.canEqual(this) && asString == that.asString
-      case _             => false
-    }
+    override def equals(obj: scala.Any): Boolean =
+      obj match {
+        case that: Default => that.canEqual(this) && asString == that.asString
+        case _             => false
+      }
 
   }
 
