@@ -15,7 +15,7 @@ Add the following to your sbt build (Scala 2.11.x, 2.12.x, 2.13.x):
 ```scala
 val version = "..."
 
-libraryDependencies += "com.github.j5ik2o" %% "base64scala" % "1.0.4"
+libraryDependencies += "com.github.j5ik2o" %% "base64scala" % version
 ```
 
 ### Snapshot Version
@@ -23,7 +23,9 @@ libraryDependencies += "com.github.j5ik2o" %% "base64scala" % "1.0.4"
 ```scala
 resolvers += "Sonatype OSS Snapshot Repository" at "https://oss.sonatype.org/content/repositories/snapshots/"
 
-libraryDependencies += "com.github.j5ik2o" %% "base64scala" % "1.0.5-SNAPSHOT"
+val version = "..."
+
+libraryDependencies += "com.github.j5ik2o" %% "base64scala" % version
 ```
 
 ## Usage
