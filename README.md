@@ -13,7 +13,7 @@ Add the following to your sbt build (Scala 2.11.x, 2.12.x, 2.13.x):
 ### Release Version
 
 ```scala
-resolvers += "Sonatype OSS Release Repository" at "https://oss.sonatype.org/content/repositories/releases/"
+val version = "..."
 
 libraryDependencies += "com.github.j5ik2o" %% "base64scala" % "1.0.4"
 ```
