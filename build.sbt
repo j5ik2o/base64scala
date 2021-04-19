@@ -30,9 +30,7 @@ val coreSettings = Seq(
   semanticdbEnabled := true,
   semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
-  Test / fork := true,
-  Test / parallelExecution := false,
-  ThisBuild / scalafmtOnCompile := true
+  Test / fork := true
 )
 
 lazy val library = (project in file("library")).settings(
