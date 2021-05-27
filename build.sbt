@@ -14,7 +14,7 @@ val coreSettings = Seq(
     )
   ),
   scalaVersion := scala213Version,
-  crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version),
+  crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version, scala3Version),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -26,11 +26,15 @@ val coreSettings = Seq(
     "-Yrangepos",
     "-Ywarn-unused"
   ),
-  ThisBuild / scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
   semanticdbEnabled := true,
   semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
-  Test / fork := true
+  Test / fork := true,
+  // Remove me when scalafix is stable and feature-complete on Scala 3
+  ThisBuild / scalafixScalaBinaryVersion := (CrossVersion.partialVersion(scalaVersion.value) match {
+    case Some((2, _)) => CrossVersion.binaryScalaVersion(scalaVersion.value)
+    case _            => CrossVersion.binaryScalaVersion(scala212Version)
+  })
 )
 
 lazy val library = (project in file("library")).settings(
