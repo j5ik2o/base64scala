@@ -30,6 +30,14 @@ val coreSettings = Seq(
   semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
   Test / fork := true,
+  Compile / doc / sources := {
+    val old = (Compile / doc / sources).value
+    if (scalaVersion.value == scala3Version) {
+      Nil
+    } else {
+      old
+    }
+  },
   // Remove me when scalafix is stable and feature-complete on Scala 3
   ThisBuild / scalafixScalaBinaryVersion := (CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, _)) => CrossVersion.binaryScalaVersion(scalaVersion.value)
