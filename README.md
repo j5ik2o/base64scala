@@ -8,7 +8,7 @@
 
 ## Installation
 
-Add the following to your sbt build (Scala 2.11.x, 2.12.x, 2.13.x):
+Add the following to your sbt build (Scala 2.11.x, 2.12.x, 2.13.x, 3.0.x):
 
 ### Release Version
 
