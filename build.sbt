@@ -26,8 +26,6 @@ val coreSettings = Seq(
     "-Yrangepos",
     "-Ywarn-unused"
   ),
-  semanticdbEnabled := true,
-  semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
   Test / fork := true,
   Compile / doc / sources := {
@@ -38,6 +36,8 @@ val coreSettings = Seq(
       old
     }
   },
+  semanticdbEnabled := true,
+  semanticdbVersion := scalafixSemanticdb.revision,
   // Remove me when scalafix is stable and feature-complete on Scala 3
   ThisBuild / scalafixScalaBinaryVersion := (CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, _)) => CrossVersion.binaryScalaVersion(scalaVersion.value)
