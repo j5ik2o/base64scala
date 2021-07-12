@@ -3,8 +3,8 @@ import Dependencies.Versions._
 
 val coreSettings = Seq(
   organization := "com.github.j5ik2o",
-  homepage := Some(url("https://github.com/j5ik2o/base64scala")),
-  licenses := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
+  homepage     := Some(url("https://github.com/j5ik2o/base64scala")),
+  licenses     := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
   developers := List(
     Developer(
       id = "j5ik2o",
@@ -13,7 +13,7 @@ val coreSettings = Seq(
       url = url("https://blog.j5ik2o.me")
     )
   ),
-  scalaVersion := scala213Version,
+  scalaVersion       := scala213Version,
   crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version, scala3Version),
   scalacOptions ++= Seq(
     "-feature",
@@ -26,10 +26,10 @@ val coreSettings = Seq(
     "-Yrangepos",
     "-Ywarn-unused"
   ),
-  semanticdbEnabled := true,
-  semanticdbVersion := scalafixSemanticdb.revision,
+  semanticdbEnabled      := true,
+  semanticdbVersion      := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
-  Test / fork := true,
+  Test / fork            := true,
   // Remove me when scalafix is stable and feature-complete on Scala 3
   ThisBuild / scalafixScalaBinaryVersion := (CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, _)) => CrossVersion.binaryScalaVersion(scalaVersion.value)
@@ -39,7 +39,7 @@ val coreSettings = Seq(
 
 lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
-    name := "base64scala",
+    name                                      := "base64scala",
     libraryDependencies += scalatest.scalatest % Test
   )
 )
