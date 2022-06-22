@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         jdk: [ adopt@1.8, adopt@1.11, adopt@1.14 ]
-        scala: [ 2.13.6, 2.12.13, 2.11.12, 3.0.0 ]
+        scala: [ 2.13.6, 2.12.16, 2.11.12, 3.0.0 ]
     runs-on: ubuntu-latest
     needs: lint
     env:
@@ -83,3 +83,4 @@ jobs:
           MERGE_LABELS: ""
           MERGE_METHOD: "rebase"
           MERGE_FILTER_AUTHOR: "j5ik2o-bot[bot]"
+          MERGE_DELETE_BRANCH: "true"
