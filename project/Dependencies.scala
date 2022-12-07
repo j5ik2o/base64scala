@@ -9,6 +9,6 @@ object Dependencies {
 
   }
   object scalatest {
-    val scalatest = "org.scalatest" %% "scalatest" % "3.2.14"
+    val scalatest = "org.scalatest" %% "scalatest" % "3.2.9"
   }
 }
