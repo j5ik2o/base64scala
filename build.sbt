@@ -1,10 +1,27 @@
-import Dependencies._
-import Dependencies.Versions._
+import Dependencies.{ scalatest, Versions }
 
-val coreSettings = Seq(
+ThisBuild / scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value)
+
+def crossScalacOptions(scalaVersion: String): Seq[String] =
+  CrossVersion.partialVersion(scalaVersion) match {
+    case Some((3L, _)) =>
+      Seq(
+        "-source:3.0-migration",
+        "-Xignore-scala2-macros"
+      )
+    case Some((2L, scalaMajor)) if scalaMajor >= 12 =>
+      Seq(
+        "-Ydelambdafy:method",
+        "-target:jvm-1.8",
+        "-Yrangepos",
+        "-Ywarn-unused"
+      )
+  }
+
+lazy val coreSettings = Seq(
   organization := "com.github.j5ik2o",
   homepage := Some(url("https://github.com/j5ik2o/base64scala")),
-  licenses := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
+  licenses := List("Apache-2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0")),
   developers := List(
     Developer(
       id = "j5ik2o",
@@ -13,37 +30,60 @@ val coreSettings = Seq(
       url = url("https://blog.j5ik2o.me")
     )
   ),
-  scalaVersion := scala213Version,
-  crossScalaVersions := Seq(scala211Version, scala212Version, scala213Version, scala3Version),
-  scalacOptions ++= Seq(
-    "-feature",
-    "-deprecation",
-    "-unchecked",
-    "-encoding",
-    "UTF-8",
-    "-language:_",
-    "-target:jvm-1.8",
-    "-Yrangepos",
-    "-Ywarn-unused"
+  scmInfo := Some(
+    ScmInfo(
+      url("https://github.com/j5ik2o/base64scala"),
+      "scm:git@github.com:j5ik2o/base64scala.git"
+    )
   ),
+  scalaVersion := Versions.scala213Version,
+  crossScalaVersions := Seq(
+    Versions.scala212Version,
+    Versions.scala213Version,
+    Versions.scala3Version
+  ),
+  scalacOptions ++= (
+    Seq(
+      "-feature",
+      "-deprecation",
+      "-unchecked",
+      "-encoding",
+      "UTF-8",
+      "-language:_"
+    ) ++ crossScalacOptions(scalaVersion.value)
+  ),
+  resolvers ++= Resolver.sonatypeOssRepos("staging"),
+  resolvers ++= Resolver.sonatypeOssRepos("releases"),
+  resolvers += "Seasar Repository" at "https://maven.seasar.org/maven2/",
+  semanticdbEnabled := true,
+  semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
   Test / fork := true,
+  Test / parallelExecution := false,
   Compile / doc / sources := {
     val old = (Compile / doc / sources).value
-    if (scalaVersion.value == scala3Version) {
+    if (scalaVersion.value == Versions.scala3Version) {
       Nil
     } else {
       old
     }
-  },
-  semanticdbEnabled := true,
-  semanticdbVersion := scalafixSemanticdb.revision,
-  // Remove me when scalafix is stable and feature-complete on Scala 3
-  ThisBuild / scalafixScalaBinaryVersion := (CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some((2, _)) => CrossVersion.binaryScalaVersion(scalaVersion.value)
-    case _            => CrossVersion.binaryScalaVersion(scala212Version)
-  })
+  }
 )
+
+def versionFromFile: String = {
+  var source: scala.io.Source = null
+  try {
+    source = scala.io.Source.fromFile("version")
+    val version = source.mkString.trim
+    println(s"version = $version")
+    version
+  } finally {
+    if (source != null)
+      source.close()
+  }
+}
+
+ThisBuild / version := versionFromFile
 
 lazy val library = (project in file("library")).settings(
   coreSettings ++ Seq(
